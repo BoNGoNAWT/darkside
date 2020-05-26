@@ -5,7 +5,6 @@ from discord.utils import get
 import shutil
 import json
 import asyncio
-import youtube_dl
 import os
 from itertools import cycle
 import colorsys
