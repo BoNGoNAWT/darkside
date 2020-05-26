@@ -123,6 +123,12 @@ async def say(ctx, *, msg):
     await ctx.send("{}".format(msg))
 
 @Bot.command()
+@commands.has_permissions( administrator = True)
+async def send(ctx, member: discord.Member, *, msg):
+    await member.send('{}'.format(msg))
+
+
+@Bot.command()
 async def ping(ctx):
     await ctx.send("Pong")
 
@@ -133,12 +139,14 @@ async def error_command(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send(embed = discord.Embed(title = '{} укажите аргумент!'.format(ctx.author.name), colour = discord.Color.red()))
 
+
 @kick.error
 async def kick_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(embed = discord.Embed(title = '{} у вас недостаточно прав!'.format(ctx.author.name), colour = discord.Color.red()))
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send(embed = discord.Embed(title = '{} укажите аргумент!'.format(ctx.author.name), colour = discord.Color.red()))
+
 
 
 
