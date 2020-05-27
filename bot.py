@@ -38,15 +38,10 @@ async def on_member_join(member):
     channel = discord.utils.get(member.guild.channel, name='User')
     Bot.load_extension('cogs.music')
     role = get(member.guild.roles, name = 'live-room🤟прихожая')
-
-    emb = discord.Embed(title = 'Join', colour = discord.Color.gold())
-
-    emb.set_author(name = member.name, icon_url = member.avatar_url)
-    emb.add_field(name = 'Пополнение', value = 'К нам присоединился {}'.format(member.mention))
     
 
     await member.add_roles(role)
-    await channel.send(embed = emb)
+    await channel.send('{member.name} добро пожаловать в нашу скромную хижину')
     
 
 @Bot.command(pass_context= True)
