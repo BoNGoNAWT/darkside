@@ -35,8 +35,24 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_member_join(member):
-    role = get(member.guild.roles, name = "User")
+    role = discord.utils.get(member.guild.roles, id=int('581177746475057153'))
     await member.add_roles(role)
+    guild=member.guild
+    mention=member.mention
+
+    embed = discord.Embed(title=str("-===New User===-"), colour=discord.Color.blurple(), description=str('{} joined of this server'.format(mention)))
+    embed.set_thumbnail(url=f"{member.avatar_url}")
+    embed.set_author(name=f"{member.name}", icon_url=f"{member.guild.icon_url}")
+    embed.timestamp = datetime.datetime.utcnow()
+    embed.add_field(name='User ID :', value=member.id)
+    embed.add_field(name='User Name :', value=member.display_name)
+    embed.add_field(name='User Serial :', value=len(list(guild.members)))
+    embed.add_field(name='Created_at :', value=member.created_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
+    embed.add_field(name='Joined_at :', value=member.joined_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
+
+    channel = discord.utils.get(member.guild.channels, id=int("580775363601235989"))
+    await channel.send(embed=embed)
+
 
     
 
