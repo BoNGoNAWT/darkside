@@ -35,17 +35,9 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_member_join(member):
-    channel = discord.utils.get(member.guild.channel, name='live-room🤟прихожая')
     role = get(member.guild.roles, name = "User")
-
-    emb = discord.Embed(title = 'Join', colour = discord.Color.gold())
-
-    emb.set_author(name = member.name, icon_url = member.avatar_url)
-    emb.add_field(name = 'Пополнение', value = 'К нам присоединился {}'.format(member.mention))
-    
-
     await member.add_roles(role)
-    await channel.send(embed = emb)
+
     
 
 @Bot.command(pass_context= True)
@@ -126,7 +118,7 @@ async def say(ctx, *, msg):
 @commands.has_permissions( administrator = True)
 async def fck(ctx, *, msg):
     await ctx.channel.purge(limit = 1)
-    await ctx.send('{ctx.author.name} послал {msg} к трём чертям')
+    await ctx.send('{}'.format(ctx.author.name),' послал {} к трём чертям'.format(msg))
  
 
 @Bot.command()
