@@ -35,11 +35,11 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_member_join(member):
-    channel = Bot.get_channel(580775363601235989)
+    channel = discord.utils.get(member.guild.channel, name='User')
     Bot.load_extension('cogs.music')
-    role = discord.utils.get(member.guild.roles, id = 581177746475057153)
+    role = get(member.guild.roles, name = 'live-room🤟прихожая')
 
-    emb = discord.Embed(title = 'Join', colour = discord.Color.dark_magenta())
+    emb = discord.Embed(title = 'Join', colour = discord.Color.gold())
 
     emb.set_author(name = member.name, icon_url = member.avatar_url)
     emb.add_field(name = 'Пополнение', value = 'К нам присоединился {}'.format(member.mention))
@@ -120,12 +120,23 @@ async def help(ctx):
 @Bot.command()
 async def say(ctx, *, msg):
     await ctx.message.delete()
+    await ctx.channel.purge(limit = 1)
     await ctx.send("{}".format(msg))
 
 @Bot.command()
 @commands.has_permissions( administrator = True)
+async def fck(ctx, member: discord.Member, *, msg):
+    await ctx.channel.purge(limit = 1)
+    await ctx.send('{ctx.author.name} послал {member.name} к трём чертям')
+ 
+
+@Bot.command()
+@commands.has_permissions( administrator = True)
 async def send(ctx, member: discord.Member, *, msg):
+    await ctx.channel.purge(limit = 1)
     await member.send('{}'.format(msg))
+    await ctx.send('Сообщение отправлено')
+    
 
 
 @Bot.command()
