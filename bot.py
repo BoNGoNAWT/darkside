@@ -35,8 +35,8 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_member_join(member):
-    channel = discord.utils.get(member.guild.channel, name='User')
-    role = get(member.guild.roles, name = "live-room🤟прихожая")
+    channel = discord.utils.get(member.guild.channel, name='live-room🤟прихожая')
+    role = get(member.guild.roles, name = "User")
 
     emb = discord.Embed(title = 'Join', colour = discord.Color.gold())
 
@@ -124,9 +124,9 @@ async def say(ctx, *, msg):
 
 @Bot.command()
 @commands.has_permissions( administrator = True)
-async def fck(ctx, member: discord.Member, *, msg):
+async def fck(ctx, *, msg):
     await ctx.channel.purge(limit = 1)
-    await ctx.send('{ctx.author.name} послал {member.name} к трём чертям')
+    await ctx.send('{ctx.author.name} послал {msg} к трём чертям')
  
 
 @Bot.command()
