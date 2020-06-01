@@ -10,19 +10,28 @@ from itertools import cycle
 import colorsys
 from discord import Game, Embed, Color, Status, ChannelType
 import datetime
+import sqlite3
+import math
+import sys, traceback
+import time
+from datetime import timedelta
+from collections import OrderedDict, deque, Counter
+import ConfigParser
 
 
 Bot = commands.Bot(command_prefix = ".")
 
 Bot.remove_command('help')
 
-
-
-
-
 @Bot.event
 async def on_ready():
     print('Bot online!')
+    
+
+@Bot.event
+async def on_message(message):
+    
+
 
 
 
@@ -35,6 +44,7 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_member_join(member):
+    m[str(member.id)] = {"xp" : 0, "messageCountdown" : 0}
     role = discord.utils.get(member.guild.roles, id=int('581177746475057153'))
     await member.add_roles(role)
     guild=member.guild
@@ -44,15 +54,14 @@ async def on_member_join(member):
     embed.set_thumbnail(url=f"{member.avatar_url}")
     embed.set_author(name=f"{member.name}", icon_url=f"{member.guild.icon_url}")
     embed.timestamp = datetime.datetime.utcnow()
-    embed.add_field(name='User ID :', value=member.id)
-    embed.add_field(name='User Name :', value=member.display_name)
-    embed.add_field(name='User Serial :', value=len(list(guild.members)))
-    embed.add_field(name='Created_at :', value=member.created_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
-    embed.add_field(name='Joined_at :', value=member.joined_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
+    embed.add_field(name='ID :', value=member.id)
+    embed.add_field(name='Никнейм :', value=member.display_name)
+    embed.add_field(name='Количество людей :', value=len(list(guild.members)))
+    embed.add_field(name='В дискорде с :', value=member.created_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
+    embed.add_field(name='Присоединился к нам :', value=member.joined_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
 
     channel = discord.utils.get(member.guild.channels, id=int("580775363601235989"))
     await channel.send(embed=embed)
-
 
     
 
@@ -121,24 +130,28 @@ async def help(ctx):
     emb.add_field(name = 'kick', value = 'Выгнать участника с сервера')
     emb.add_field(name = 'ban', value = 'Забанить участника')
     emb.add_field(name = 'unban', value = 'Розбанить участника')
+    emb.add_field(name = 'say', value = 'Отправить сообщение от имени бота')
+    emb.add_field(name = 'send', value = 'Отправить личное сообщение от имени бота')
 
     await ctx.send(embed = emb)
 
 @Bot.command()
+@commands.has_permissions(manage_messages =True)
 async def say(ctx, *, msg):
     await ctx.message.delete()
     await ctx.channel.purge(limit = 1)
     await ctx.send("{}".format(msg))
 
 @Bot.command()
-@commands.has_permissions( administrator = True)
-async def fck(ctx, *, msg):
+@commands.has_permissions(manage_messages =True)
+async def fck(ctx, member: discord.Member, *, msg):
     await ctx.channel.purge(limit = 1)
-    await ctx.send('{}'.format(ctx.author.name),' послал {} к трём чертям'.format(msg))
+    await ctx.send('{}'.format(ctx.author.name),' послал {} к трём чертям'.format(member.name))
  
 
 @Bot.command()
 @commands.has_permissions( administrator = True)
+@commands.has_permissions(administrator = True)
 async def send(ctx, member: discord.Member, *, msg):
     await ctx.channel.purge(limit = 1)
     await member.send('{}'.format(msg))
