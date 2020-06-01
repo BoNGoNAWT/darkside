@@ -36,7 +36,6 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_member_join(member):
-    m[str(member.id)] = {"xp" : 0, "messageCountdown" : 0}
     role = discord.utils.get(member.guild.roles, id=int('581177746475057153'))
     await member.add_roles(role)
     guild=member.guild
