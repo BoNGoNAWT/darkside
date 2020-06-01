@@ -29,14 +29,6 @@ async def on_ready():
     
 
 @Bot.event
-async def on_message(message):
-    
-
-
-
-
-
-@Bot.event
 async def on_command_error(ctx, error):
     pass
 
