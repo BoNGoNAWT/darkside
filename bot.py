@@ -16,8 +16,6 @@ import sys, traceback
 import time
 from datetime import timedelta
 from collections import OrderedDict, deque, Counter
-import ConfigParser
-
 
 Bot = commands.Bot(command_prefix = ".")
 
