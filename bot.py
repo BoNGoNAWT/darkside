@@ -132,7 +132,7 @@ async def say(ctx, *, msg):
 
 @Bot.command()
 @commands.has_permissions(manage_messages =True)
-async def fck(ctx, member: discord.Member, *, msg):
+async def fck(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send("{ctx.author.name} послал к трём чертям {member.mention}")
  
