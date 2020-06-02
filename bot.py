@@ -133,7 +133,7 @@ async def say(ctx, *, msg):
 
 @Bot.command()
 @commands.has_permissions(manage_messages =True)
-async def fck(ctx, *, msg):
+async def fck(ctx, member: discord.Member, *, msg):
     await ctx.message.delete()
     await ctx.channel.purge(limit = 1)
     await ctx.send("{msg} послал к трём чертям {}".format(member.mention))
