@@ -141,6 +141,7 @@ async def fck(ctx, member: discord.Member, *, msg):
 @commands.has_permissions( administrator = True)
 @commands.has_permissions(administrator = True)
 async def send(ctx, member: discord.Member, *, msg):
+    await ctx.message.delete()
     await member.send('{}'.format(msg))
     await ctx.send('Сообщение отправлено')
     
