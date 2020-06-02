@@ -128,22 +128,19 @@ async def help(ctx):
 @commands.has_permissions(manage_messages =True)
 async def say(ctx, *, msg):
     await ctx.message.delete()
-    await ctx.channel.purge(limit = 1)
     await ctx.send("{}".format(msg))
 
 @Bot.command()
 @commands.has_permissions(manage_messages =True)
 async def fck(ctx, member: discord.Member, *, msg):
     await ctx.message.delete()
-    await ctx.channel.purge(limit = 1)
-    await ctx.send("{msg} послал к трём чертям {}".format(member.mention))
+    await ctx.send("{}".formar(ctx.author.name)." послал к трём чертям {}".format(member.mention))
  
 
 @Bot.command()
 @commands.has_permissions( administrator = True)
 @commands.has_permissions(administrator = True)
 async def send(ctx, member: discord.Member, *, msg):
-    await ctx.channel.purge(limit = 1)
     await member.send('{}'.format(msg))
     await ctx.send('Сообщение отправлено')
     
