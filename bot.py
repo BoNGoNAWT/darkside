@@ -121,6 +121,10 @@ async def help(ctx):
     emb.add_field(name = 'unban', value = 'Розбанить участника')
     emb.add_field(name = 'say', value = 'Отправить сообщение от имени бота')
     emb.add_field(name = 'send', value = 'Отправить личное сообщение от имени бота')
+    emb.add_field(name = 'fck', value = 'Послать к трём чертям')
+    emb.add_field(name = 'hug', value = 'Обнять')
+    emb.add_field(name = 'kiss', value = 'Поцеловать')
+    emb.add_field(name = 'kill', value = 'Убить')
 
     await ctx.send(embed = emb)
 
@@ -131,10 +135,25 @@ async def say(ctx, *, msg):
     await ctx.send("{}".format(msg))
 
 @Bot.command()
-@commands.has_permissions(manage_messages =True)
 async def fck(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send(f"{ctx.author.mention} послал к трём чертям {member.mention}")
+
+
+@Bot.command()
+async def hug(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention} обнял(а) {member.mention}")
+
+@Bot.command()
+async def kiss(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention} поцеловал(а) {member.mention}")
+
+@Bot.command()
+async def kill(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention} убил (а) {member.mention}")
  
 
 @Bot.command()
