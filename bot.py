@@ -134,12 +134,11 @@ async def say(ctx, *, msg):
 @commands.has_permissions(manage_messages =True)
 async def fck(ctx, member: discord.Member, *, msg):
     await ctx.message.delete()
-    await ctx.send("{}".format(ctx.author.name)," послал к трём чертям {}".format(member.mention))
+    await ctx.send("{ctx.author.name} послал к трём чертям {member.mention}")
  
 
 @Bot.command()
 @commands.has_permissions( administrator = True)
-@commands.has_permissions(administrator = True)
 async def send(ctx, member: discord.Member, *, msg):
     await ctx.message.delete()
     await member.send('{}'.format(msg))
@@ -149,7 +148,11 @@ async def send(ctx, member: discord.Member, *, msg):
 
 @Bot.command()
 async def ping(ctx):
-    await ctx.send("Pong")
+    await ctx.send("Pong!")
+
+@Bot.command()
+async def king(ctx):
+    await ctx.send("Kong!")
 
 @ban.error
 async def error_command(ctx, error):
