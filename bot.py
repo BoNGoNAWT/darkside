@@ -57,17 +57,8 @@ async def on_member_join(member):
 @commands.has_permissions(manage_messages =True)
 async def clear(ctx, amount = 100):
     await ctx.channel.purge(limit = amount)
+ 
 
-
-@Bot.command()
-async def meme(ctx, msg):
-    images=["https://www.google.com/search?q=мемы&tbm=isch&ved=2ahUKEwiW6qDlgPDpAhVKsyoKHdP3A1IQ2-cCegQIABAA&oq=мемы&gs_lcp=CgNpbWcQAzIHCAAQsQMQQzIHCAAQsQMQQzIHCAAQsQMQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIFCAAQsQMyBQgAELEDOgQIIxAnOgIIAFCX9QJYxYADYKuEA2gAcAB4AIABY4gB0wKSAQE0mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=_QXdXtb3IcrmqgHT74-QBQ&bih=751&biw=1495&client=opera-gx&hs=YV0"]
-
-    embed=discord.Embed(colour=discord.Colour.orange())
-
-    embed.set_image(url=random.choice(images))
-
-    await ctx.send(embed=embed)
 
 @Bot.command(pass_context = True)
 @commands.has_permissions(administrator = True)
@@ -147,13 +138,18 @@ async def say(ctx, *, msg):
 @Bot.command()
 async def fck(ctx, member: discord.Member):
     await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} послал к трём чертям {member.mention}")
+    await ctx.send(f"{ctx.author.mention} послал(a) к трём чертям {member.mention}")
 
 
 @Bot.command()
 async def hug(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send(f"{ctx.author.mention} обнял(а) {member.mention}")
+
+@Bot.command()
+async def artic(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention} росчленил(а) {member.mention}")
 
 @Bot.command()
 async def kiss(ctx, member: discord.Member):
@@ -164,6 +160,22 @@ async def kiss(ctx, member: discord.Member):
 async def kill(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send(f"{ctx.author.mention} убил (а) {member.mention}")
+
+@Bot.command()
+async def burn(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention} кинул(а) {member.mention} в крематорий")
+
+@Bot.command()
+async def sex(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention} подверг(ла) к жесткому сексу {member.mention}")
+
+@Bot.command()
+async def suicide(ctx, member: discord.Member):
+    vvr = ['утонул(а) в луже', 'умер(ла) на унитазе', 'умер(ла) во время мастурбауии', 'утонул(ла) в луже', 'героически погиб(ла) сражаясь за печеньку', 'умер(ла), причина: кусь']
+    await ctx.message.delete()
+    await ctx.send(f"{ctx.author.mention}, {random.choice(vvr)}")
  
 
 @Bot.command()
