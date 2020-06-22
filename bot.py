@@ -111,8 +111,6 @@ async def unban(ctx, *, member):
         return
 
 @Bot.command(pass_context= True)
-
-
 async def help(ctx):
     emb = discord.Embed(title = 'Команды:')
 
