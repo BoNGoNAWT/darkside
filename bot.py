@@ -73,10 +73,6 @@ async def on_voice_state_update(member,before,after):
 
 @Bot.command(pass_context = True)
 @commands.has_permissions(administrator = True)
-
-@Bot.command(pass_context = True)
-@commands.has_permissions(administrator = True)
-
 async def kick(ctx, member: discord.Member, *, reason = None):
     await ctx.channel.purge(limit = 1)
     emb = discord.Embed(title = 'Kick', colour = discord.Color.purple())
