@@ -45,8 +45,6 @@ async def on_voice_state_update(member,before,after):
 
 @Bot.event
 async def on_member_join(member):
-    role = discord.utils.get(member.guild.roles, id=int('581177746475057153'))
-    await member.add_roles(role)
     guild=member.guild
     mention=member.mention
 
@@ -141,50 +139,7 @@ async def help(ctx):
 async def say(ctx, *, msg):
     await ctx.message.delete()
     await ctx.send("{}".format(msg))
-
-@Bot.command()
-async def fck(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} послал(a) к трём чертям {member.mention}")
-
-
-@Bot.command()
-async def hug(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} обнял(а) {member.mention}")
-
-@Bot.command()
-async def artic(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} росчленил(а) {member.mention}")
-
-@Bot.command()
-async def kiss(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} поцеловал(а) {member.mention}")
-
-@Bot.command()
-async def kill(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} убил (а) {member.mention}")
-
-@Bot.command()
-async def burn(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} кинул(а) {member.mention} в крематорий")
-
-@Bot.command()
-async def sex(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention} подверг(ла) к жесткому сексу {member.mention}")
-
-@Bot.command()
-async def suicide(ctx, member: discord.Member):
-    vvr = ['утонул(а) в луже', 'умер(ла) на унитазе', 'умер(ла) во время мастурбауии', 'утонул(ла) в луже', 'героически погиб(ла) сражаясь за печеньку', 'умер(ла), причина: кусь']
-    await ctx.message.delete()
-    await ctx.send(f"{ctx.author.mention}, {random.choice(vvr)}")
  
-
 @Bot.command()
 @commands.has_permissions( administrator = True)
 async def send(ctx, member: discord.Member, *, msg):
