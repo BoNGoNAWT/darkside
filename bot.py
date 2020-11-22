@@ -124,8 +124,8 @@ async def king(ctx):
     await ctx.send("Kong!")
     
 @Bot.event
-async def on_raw_reaction_add(payload);
-    message_id == payload.message.id
+async def on_raw_reaction_add(payload):
+    message_id == payload.message_id
     if message_id == 779988307395477514:
         guild_id = discord.utils.find(lambda g : g.id == guild.id, Bot.guilds)
         
