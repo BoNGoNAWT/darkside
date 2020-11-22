@@ -155,7 +155,24 @@ async def ping(ctx):
 @Bot.command()
 async def king(ctx):
     await ctx.send("Kong!")
-
+    
+@Bot.event
+async def on_raw_reaction_add(payload);
+    message_id == payload.message_id
+    if message_id == 779988307395477514:
+        guild_id = discord.utils.find(lambda g : g.id == guild.id, client.guilds)
+        
+        if payload.emoji.name == 'one':
+            role = discord.utils.get(guild.roles, name='ghost')
+        elif payload.emoji.name == 'two':
+            role = discord.utils.get(guild.roles, name='flame')
+        elif payload.emoji.name == 'three':
+            role = discord.utils.get(guild.roles, name='dark')
+            
+        else:
+            role = discord.utils.get(guild.roles, name=payload.emoji.name)
+    
+    
 @ban.error
 async def error_command(ctx, error):
     if isinstance(error, commands.MissingPermissions):
