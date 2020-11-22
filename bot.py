@@ -127,7 +127,7 @@ async def king(ctx):
 async def on_raw_reaction_add(payload):
     message_id == payload.message.id
     if message_id == 779988307395477514:
-        guild_id = discord.utils.find(lambda g : g.id == guild.id, Bot.guilds)
+        guild = discord.utils.find(lambda g : g.id == guild.id, Bot.guilds)
         
         if payload.emoji.name == 'one':
             role = discord.utils.get(guild.roles, name='ghost')
