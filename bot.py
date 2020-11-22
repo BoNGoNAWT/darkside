@@ -43,23 +43,6 @@ async def on_voice_state_update(member,before,after):
             await Bot.wait_for('voice_state_update',check=check)
             await channel2.delete()
 
-@Bot.event
-async def on_member_join(member):
-    guild=member.guild
-    mention=member.mention
-
-    embed = discord.Embed(title=str("-===New User===-"), colour=discord.Color.blurple(), description=str('{} joined of this server'.format(mention)))
-    embed.set_thumbnail(url=f"{member.avatar_url}")
-    embed.set_author(name=f"{member.name}", icon_url=f"{member.guild.icon_url}")
-    embed.timestamp = datetime.datetime.utcnow()
-    embed.add_field(name='ID :', value=member.id)
-    embed.add_field(name='Никнейм :', value=member.display_name)
-    embed.add_field(name='Количество людей :', value=len(list(guild.members)))
-    embed.add_field(name='В дискорде с :', value=member.created_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
-    embed.add_field(name='Присоединился к нам :', value=member.joined_at.strftime("%a %#b %B %Y, %I:%M %p UTC"))
-
-    channel = discord.utils.get(member.guild.channels, id=int("580775363601235989"))
-    await channel.send(embed=embed)
 
 
 @Bot.command(pass_context= True)
@@ -117,22 +100,6 @@ async def unban(ctx, *, member):
 
         return
 
-@Bot.command(pass_context= True)
-async def help(ctx):
-    emb = discord.Embed(title = 'Команды:')
-
-    emb.add_field(name = 'clear', value = 'Очичтка чата')
-    emb.add_field(name = 'kick', value = 'Выгнать участника с сервера')
-    emb.add_field(name = 'ban', value = 'Забанить участника')
-    emb.add_field(name = 'unban', value = 'Розбанить участника')
-    emb.add_field(name = 'say', value = 'Отправить сообщение от имени бота')
-    emb.add_field(name = 'send', value = 'Отправить личное сообщение от имени бота')
-    emb.add_field(name = 'fck', value = 'Послать к трём чертям')
-    emb.add_field(name = 'hug', value = 'Обнять')
-    emb.add_field(name = 'kiss', value = 'Поцеловать')
-    emb.add_field(name = 'kill', value = 'Убить')
-
-    await ctx.send(embed = emb)
 
 @Bot.command()
 @commands.has_permissions(manage_messages =True)
@@ -160,7 +127,7 @@ async def king(ctx):
 async def on_raw_reaction_add(payload);
     message_id == payload.message_id
     if message_id == 779988307395477514:
-        guild_id = discord.utils.find(lambda g : g.id == guild.id, client.guilds)
+        guild_id = discord.utils.find(lambda g : g.id == guild.id, Bot.guilds)
         
         if payload.emoji.name == 'one':
             role = discord.utils.get(guild.roles, name='ghost')
