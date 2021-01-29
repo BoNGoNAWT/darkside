@@ -126,28 +126,24 @@ async def king(ctx):
 @Bot.event
 async def on_raw_reaction_add(payload):
     message_id = payload.message_id
-    if message_id == 779988307395477514:
+    if message_id == 798911162829242399:
         guild_id = payload.guild_id
         guild = discord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
-        
-        if payload.emoji.name == 'one':
-            role = discord.utils.get(guild.roles, name='ghost')
-        elif payload.emoji.name == 'two':
-            role = discord.utils.get(guild.roles, name='flame')
-        elif payload.emoji.name == 'three':
-            role = discord.utils.get(guild.roles, name='dark')
-            
-        else:
-            role = discord.utils.get(guild.roles, name=payload.emoji.name)
 
+        if payload.emoji.name == 'one':
+            role = discord.utils.get(guild.roles, name='light')
+        elif payload.emoji.name == 'two':
+            role = discord.utils.get(guild.roles, name='dark')
+        else:
+            print('not done')
         if role is not None:
-            member = discord.utils.find(lambda m: m.id == payload.user_id, guild.members)
+            member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
             if member is not None:
                 await member.add_roles(role)
             else:
-                print('Member not found')
+                print('member not found')
         else:
-            print('Role not found')
+            print('role not found')
     
     
 @ban.error
